@@ -26,7 +26,7 @@ library(mosaic)
 ## Research Question(s)
 
 Write your research question(s) on this slide
-> Is there a significant difference in population means of mean GO reaction time (s) in casual super smash bro gamers and in top 150 super smash bro gamers? 
+> Is there a significant difference in population means of mean GO reaction time (ms) for super smash bros ultimate players that have competed in the Monterey and San Jose Counties for casual super smash bro gamers and for top 150(elite) super smash bro gamers? 
 
 ## Description of Data
 
@@ -108,5 +108,5 @@ t.test(Actual_Mean_Go_RT_ms~Game, data = nerds, alternative = "less")
 
 ## Failure of Parametric Methods
 Describe why or provide evidence for why parametric methods are not reasonable
-> Parmetric methods are not reasonable for assessment do to the right skew that we see in both of the two groups for our response variable. The skew and the small sample size make parametric methods innappropriate to use for analysis.
+> Parmetric methods are not reasonable for assessment becuase it violates the conditions for a t test, normality of sufficient sample size. Due to the right skew that we see in the histograms for both casual gamers and elite gamers. The small sample size of 24 for casual gamers, and 19 for elite gamers, which are both less than 30, we do not have sufficient sample sizes given our data with a heavy right skew. Therefore, we cannot use the t distribution as a model of the sampling distribution make parametric methods innappropriate to use for analysis.
 
