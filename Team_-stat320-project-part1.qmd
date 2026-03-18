@@ -47,6 +47,7 @@ Sample : 43 super smash bros ultimate players that have competed in the Monterey
 
 - Identify Variables and Types, including new variables you will create
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 >Health and Lifestyle:  
  Sex - Male or Female (Qualitative)  
@@ -63,6 +64,9 @@ Difference (Actual mean - Practice mean) of Cognitive measure test in millisecon
 Level of Gaming/Type:  
  Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA) (Qualitative)  
 =======
+=======
+
+>>>>>>> 826493aa2881df158f10ec489116d786fa0ec7bd
 >Health and Lifestyle: 
  Sex - Male or Female (Qualitative)
  Age_years (Quantitative)
@@ -77,7 +81,6 @@ Difference (Actual mean - Practice mean) of Cognitive measure test in millisecon
  PP_ROC_Building_Test - Purdue Pegboard test (Quantitative)
 Level of Gaming/Type:
  Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA) (Qualitative)
->>>>>>> dee06a76a177a40dfbd0295d0fc6b101dbbe56d1
  Abbreviations: SB (Super Smash Bros Ultimate), FPS (First Person Shooter), MOBA (multiplayer online battle arena)
 
 - Describe how data was collected
