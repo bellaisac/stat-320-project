@@ -15,6 +15,7 @@ execute:
 #| include: false
 
 library(tidyverse)
+library(mosaic)
 ```
 
 <!-- Please note that this is not the final format for the presentation, just for the submission of Part 1 of the Project.  See the Project Presentation Template for a more complete version of the presentation slide requirements (but still read through the OVERVIEW) -->
@@ -42,6 +43,7 @@ Case: smash bros ultimate player that has competed in the Monterey or San Jose C
 Sample : 43 super smash bros ultimate players that have competed in the Monterey and San Jose Counties
 
 - Identify Variables and Types, including new variables you will create
+<<<<<<< HEAD
 >Health and Lifestyle:  
  Sex - Male or Female (Qualitative)  
  Age_years (Quantitative)  
@@ -56,6 +58,22 @@ Difference (Actual mean - Practice mean) of Cognitive measure test in millisecon
  PP_ROC_Building_Test - Purdue Pegboard test (Quantitative)  
 Level of Gaming/Type:  
  Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA) (Qualitative)  
+=======
+>Health and Lifestyle: 
+ Sex - Male or Female (Qualitative)
+ Age_years (Quantitative)
+ Gaming_hr_week_ratio - Hours per week gaming (Quantitative)
+ Caffeine_Intake_mg_d - Reported caffeine intake (mg) per day (Quantitative)
+ Sleep_hrs - Typical hours of sleep per night (Quantitative)
+ Exercise_hours_week - Hours per week exercising (Quantitative)
+Difference (Actual mean - Practice mean) of Cognitive measure test in milliseconds (ms):
+ SR_ROC_Mean_RT - Simple Reaction test (Quantitative)
+ ROC_Mean_Go_RT - Go/No Go test (Quantitative)
+ ROC_Mean_Valid_Cue_RT_ms - Posner Cueing test (valid cue) (Quantitative)
+ PP_ROC_Building_Test - Purdue Pegboard test (Quantitative)
+Level of Gaming/Type:
+ Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA) (Qualitative)
+>>>>>>> dee06a76a177a40dfbd0295d0fc6b101dbbe56d1
  Abbreviations: SB (Super Smash Bros Ultimate), FPS (First Person Shooter), MOBA (multiplayer online battle arena)
 
 - Describe how data was collected
@@ -63,6 +81,18 @@ Level of Gaming/Type:
 
 ## Summary Statistics and Graphics
 Provide descriptions and inset values from R output.
+```{r}
+nerds |> 
+  filter(Game %in% "Casual-SB")|>
+  gf_histogram(~Actual_Mean_Go_RT_ms)
+
+nerds |> 
+  filter(Game %in% "Elite-SB")|>
+  gf_histogram(~Actual_Mean_Go_RT_ms)
+
+nerds|>
+    df_stats(Actual_Mean_Go_RT_ms~Game)
+```
 
 
 ## Analysis
