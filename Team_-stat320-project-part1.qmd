@@ -84,11 +84,15 @@ Provide descriptions and inset values from R output.
 ```{r}
 nerds |> 
   filter(Game %in% "Casual-SB")|>
-  gf_histogram(~Actual_Mean_Go_RT_ms)
+  gf_histogram(~Actual_Mean_Go_RT_ms, binwidth = 20, color = 1,
+               xlab = "Mean Actual GO reaction time(ms) for casual Super Smash Bro gamers",
+               ylab = "Number of gamers")
 
 nerds |> 
   filter(Game %in% "Elite-SB")|>
-  gf_histogram(~Actual_Mean_Go_RT_ms)
+  gf_histogram(~Actual_Mean_Go_RT_ms, binwidth = 20, color = 1,
+               xlab = "Mean Actual GO reaction time(ms) for top 150 Super Smash Bro gamers",
+               ylab = "Number of gamers" )
 
 nerds|>
     df_stats(Actual_Mean_Go_RT_ms~Game)
