@@ -1,6 +1,6 @@
 ---
 title: "Working Title"
-author: "NAMES"
+author: "Kiwi & Isabella"
 format: revealjs
 embed-resources: true
 html-math-method: mathml
@@ -14,7 +14,7 @@ execute:
 #| label: setup
 #| include: false
 
-#library(_____)
+library(tidyverse)
 ```
 
 <!-- Please note that this is not the final format for the presentation, just for the submission of Part 1 of the Project.  See the Project Presentation Template for a more complete version of the presentation slide requirements (but still read through the OVERVIEW) -->
