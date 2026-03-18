@@ -15,6 +15,7 @@ execute:
 #| include: false
 
 library(tidyverse)
+library(mosaic)
 ```
 
 <!-- Please note that this is not the final format for the presentation, just for the submission of Part 1 of the Project.  See the Project Presentation Template for a more complete version of the presentation slide requirements (but still read through the OVERVIEW) -->
@@ -56,14 +57,25 @@ Difference (Actual mean - Practice mean) of Cognitive measure test in millisecon
  PP_ROC_Building_Test - Purdue Pegboard test (Quantitative)
 Level of Gaming/Type:
  Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA) (Qualitative)
- Abbreviations: SB (Super Smash Bros Ultimate), FPS (First Person Shooter), MOBA (multiplayer
-online battle arena)
+ Abbreviations: SB (Super Smash Bros Ultimate), FPS (First Person Shooter), MOBA (multiplayer online battle arena)
 
 - Describe how data was collected
 > The participant collection included visiting local Monterey, San Jose, and CSUMB tournaments for esports, visiting the CSUMB library to ask people to join, and other non-random methods of obtaining participants.
 
 ## Summary Statistics and Graphics
 Provide descriptions and inset values from R output.
+```{r}
+nerds |> 
+  filter(Game %in% "Casual-SB")|>
+  gf_histogram(~Actual_Mean_Go_RT_ms)
+
+nerds |> 
+  filter(Game %in% "Elite-SB")|>
+  gf_histogram(~Actual_Mean_Go_RT_ms)
+
+nerds|>
+    df_stats(Actual_Mean_Go_RT_ms~Game)
+```
 
 
 ## Analysis
