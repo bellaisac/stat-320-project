@@ -1,0 +1,51 @@
+---
+title: "Working Title"
+author: "NAMES"
+format: revealjs
+embed-resources: true
+html-math-method: mathml
+execute: 
+  warning: false
+  echo: false
+  error: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+#library(_____)
+```
+
+<!-- Please note that this is not the final format for the presentation, just for the submission of Part 1 of the Project.  See the Project Presentation Template for a more complete version of the presentation slide requirements (but still read through the OVERVIEW) -->
+
+<!--- Note: you will want to replace my instructions with your actual responses on each slide --->
+
+
+## Research Question(s)
+
+Write your research question(s) on this slide
+
+## Description of Data
+
+- Identify Population, Individuals, Sample
+- Identify Variables and Types, including new variables you will create
+- Describe how data was collected
+
+## Summary Statistics and Graphics
+Provide descriptions and inset values from R output.
+```{r}
+#data<-read_csv()
+#include data in project file
+#may need a few more slides for graphics
+```
+
+## Analysis
+Provide analysis using parametric methods (will not be in your final presentation)
+```{r}
+#analysis code
+```
+
+## Failure of Parametric Methods
+Describe why or provide evidence for why parametric methods are not reasonable
+
