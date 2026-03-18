@@ -108,4 +108,5 @@ t.test(Actual_Mean_Go_RT_ms~Game, data = nerds, alternative = "less")
 
 ## Failure of Parametric Methods
 Describe why or provide evidence for why parametric methods are not reasonable
+> Parmetric methods are not reasonable for assessment do to the right skew that we see in both of the two groups for our response variable. The skew and the small sample size make parametric methods innappropriate to use for analysis.
 
