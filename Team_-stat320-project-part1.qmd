@@ -29,6 +29,13 @@ Write your research question(s) on this slide
 
 ## Description of Data
 
+```{r}
+gamer <- read_csv("Esports_Study_Data.csv")
+nerds <- gamer |> 
+  filter(Game %in% c("Casual-SB", "Elite-SB"))
+```
+
+
 - Identify Population, Individuals, Sample
 > Population: All super smash bros ultimate players that have competed in the Monterey and San Jose Counties  
 Case: smash bros ultimate player that has competed in the Monterey or San Jose Counties   
