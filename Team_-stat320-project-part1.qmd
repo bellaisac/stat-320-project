@@ -35,7 +35,22 @@ Case: smash bros ultimate player that has competed in the Monterey or San Jose C
 Sample : 43 super smash bros ultimate players that have competed in the Monterey and San Jose Counties
 
 - Identify Variables and Types, including new variables you will create
-
+Health and Lifestyle:
+ Sex - Male or Female
+ Age_years
+ Gaming_hr_week_ratio - Hours per week gaming
+ Caffeine_Intake_mg_d - Reported caffeine intake (mg) per day
+ Sleep_hrs - Typical hours of sleep per night
+ Exercise_hours_week - Hours per week exercising
+Difference (Actual mean - Practice mean) of Cognitive measure test in milliseconds (ms):
+ SR_ROC_Mean_RT - Simple Reaction test
+ ROC_Mean_Go_RT - Go/No Go test
+ ROC_Mean_Valid_Cue_RT_ms - Poesner Cueing test (valid cue)
+ PP_ROC_Building_Test - Purdue Pegboard test
+Level of Gaming/Type:
+ Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA)
+ Abbreviations: SB (Super Smash Bros Ultimate), FPS (First Person Shooter), MOBA (multiplayer
+online battle arena)
 - Describe how data was collected
 
 ## Summary Statistics and Graphics
