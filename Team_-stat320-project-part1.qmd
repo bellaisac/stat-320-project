@@ -1,7 +1,7 @@
 ---
-title: "Working Title"
+title: "Impulsive Reaction Time between Casual and Top 150 Esports Players"
 author: "Kiwi & Isabella"
-format: revealjs
+format: gfm
 embed-resources: true
 html-math-method: mathml
 execute: 
@@ -9,6 +9,7 @@ execute:
   echo: false
   error: false
 ---
+revealjs
 
 ```{r}
 #| label: setup
@@ -26,6 +27,7 @@ library(mosaic)
 ## Research Question(s)
 
 Write your research question(s) on this slide
+
 > Is there a significant difference in population means of mean GO reaction time (ms) for super smash bros ultimate players that have competed in the Monterey and San Jose Counties for casual super smash bro gamers and for top 150(elite) super smash bro gamers? 
 
 ## Description of Data
@@ -38,12 +40,14 @@ nerds <- gamer |>
 
 
 - Identify Population, Individuals, Sample
+
 > Population: All super smash bros ultimate players that have competed in the Monterey and San Jose Counties  
 Case: smash bros ultimate player that has competed in the Monterey or San Jose Counties   
 Sample : 43 super smash bros ultimate players that have competed in the Monterey and San Jose Counties
 
 - Identify Variables and Types, including new variables you will create
 <<<<<<< HEAD
+
 >Health and Lifestyle:  
  Sex - Male or Female (Qualitative)  
  Age_years (Quantitative)  
@@ -77,6 +81,7 @@ Level of Gaming/Type:
  Abbreviations: SB (Super Smash Bros Ultimate), FPS (First Person Shooter), MOBA (multiplayer online battle arena)
 
 - Describe how data was collected
+
 > The participant collection included visiting local Monterey, San Jose, and CSUMB tournaments for esports, visiting the CSUMB library to ask people to join, and other non-random methods of obtaining participants.
 
 ## Summary Statistics and Graphics
@@ -108,5 +113,6 @@ t.test(Actual_Mean_Go_RT_ms~Game, data = nerds, alternative = "less")
 
 ## Failure of Parametric Methods
 Describe why or provide evidence for why parametric methods are not reasonable
+
 > Parmetric methods are not reasonable for assessment becuase it violates the conditions for a t test, normality of sufficient sample size. Due to the right skew that we see in the histograms for both casual gamers and elite gamers. The small sample size of 24 for casual gamers, and 19 for elite gamers, which are both less than 30, we do not have sufficient sample sizes given our data with a heavy right skew. Therefore, we cannot use the t distribution as a model of the sampling distribution make parametric methods innappropriate to use for analysis.
 
