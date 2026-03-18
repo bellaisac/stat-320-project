@@ -25,7 +25,7 @@ library(tidyverse)
 ## Research Question(s)
 
 Write your research question(s) on this slide
-> Is there a significant population shift in mean GO reaction time (s) between casual super smash bro gamers and top 150 super smash bro gamers? 
+> Is there a significant difference in population means of mean GO reaction time (s) in casual super smash bro gamers and in top 150 super smash bro gamers? 
 
 ## Description of Data
 
@@ -42,22 +42,21 @@ Case: smash bros ultimate player that has competed in the Monterey or San Jose C
 Sample : 43 super smash bros ultimate players that have competed in the Monterey and San Jose Counties
 
 - Identify Variables and Types, including new variables you will create
->Health and Lifestyle: 
- Sex - Male or Female (Qualitative)
- Age_years (Quantitative)
- Gaming_hr_week_ratio - Hours per week gaming (Quantitative)
- Caffeine_Intake_mg_d - Reported caffeine intake (mg) per day (Quantitative)
- Sleep_hrs - Typical hours of sleep per night (Quantitative)
- Exercise_hours_week - Hours per week exercising (Quantitative)
-Difference (Actual mean - Practice mean) of Cognitive measure test in milliseconds (ms):
- SR_ROC_Mean_RT - Simple Reaction test (Quantitative)
- ROC_Mean_Go_RT - Go/No Go test (Quantitative)
- ROC_Mean_Valid_Cue_RT_ms - Posner Cueing test (valid cue) (Quantitative)
- PP_ROC_Building_Test - Purdue Pegboard test (Quantitative)
-Level of Gaming/Type:
- Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA) (Qualitative)
- Abbreviations: SB (Super Smash Bros Ultimate), FPS (First Person Shooter), MOBA (multiplayer
-online battle arena)
+>Health and Lifestyle:  
+ Sex - Male or Female (Qualitative)  
+ Age_years (Quantitative)  
+ Gaming_hr_week_ratio - Hours per week gaming (Quantitative)  
+ Caffeine_Intake_mg_d - Reported caffeine intake (mg) per day (Quantitative)  
+ Sleep_hrs - Typical hours of sleep per night (Quantitative)  
+ Exercise_hours_week - Hours per week exercising (Quantitative)  
+Difference (Actual mean - Practice mean) of Cognitive measure test in milliseconds (ms):  
+ SR_ROC_Mean_RT - Simple Reaction test (Quantitative)  
+ ROC_Mean_Go_RT - Go/No Go test (Quantitative)  
+ ROC_Mean_Valid_Cue_RT_ms - Posner Cueing test (valid cue) (Quantitative)  
+ PP_ROC_Building_Test - Purdue Pegboard test (Quantitative)  
+Level of Gaming/Type:  
+ Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA) (Qualitative)  
+ Abbreviations: SB (Super Smash Bros Ultimate), FPS (First Person Shooter), MOBA (multiplayer online battle arena)
 
 - Describe how data was collected
 > The participant collection included visiting local Monterey, San Jose, and CSUMB tournaments for esports, visiting the CSUMB library to ask people to join, and other non-random methods of obtaining participants.
@@ -68,8 +67,9 @@ Provide descriptions and inset values from R output.
 
 ## Analysis
 Provide analysis using parametric methods (will not be in your final presentation)
+
 ```{r}
-#analysis code
+t.test(Actual_Mean_Go_RT_ms~Game, data = nerds, alternative = "less")
 ```
 
 ## Failure of Parametric Methods
