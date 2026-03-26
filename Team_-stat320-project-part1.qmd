@@ -65,8 +65,6 @@ Level of Gaming/Type:
  Gaming (measured as Non-Gamer, Casual-SB, Elite-SB, FPS, MOBA) (Qualitative)  
 =======
 =======
-
->>>>>>> 826493aa2881df158f10ec489116d786fa0ec7bd
 >Health and Lifestyle: 
  Sex - Male or Female (Qualitative)
  Age_years (Quantitative)
