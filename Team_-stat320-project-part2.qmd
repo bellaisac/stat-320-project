@@ -44,7 +44,7 @@ nerds <- gamer |>
 
 ## Background  
 
-- Relevant information to help us understand what has been done already
+- In the growing Esports industry, competitive Super Smash Bros Ultimate (SSBU) players require quick reactions and timely responses to stimuli.
 - Don't be afraid to include images 
 
 ![Sample Image - this can be left blank](images/sample_image.png){#id .class width=40% height=40%}
