@@ -55,8 +55,11 @@ execute:
 
 ## Methods Slide 2 - Analytic Methods
 
-- Why did you use nonparametric methods? 
-- *(Note: if you believe the data should be analyzed with non-parametric methods (requirement), then you should not include the parametric analyses you completed in part 1 in the final project)*
+- Why did you use nonparametric methods?  
+  
+- A skew across groups.  
+- The small sample size within groups. ($n_casual$ = 24, $n_elite$ = 19)  
+- T-Distribution would not be trustworthy with these conditions.  
 
 
 
