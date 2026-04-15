@@ -57,6 +57,7 @@ execute:
 ## Methods Slide 2 - Analytic Methods
 
 - Why did you use nonparametric methods? 
+Parmetric methods are not reasonable for assessment becuase it violates the conditions for a t test, normality of sufficient sample size. Due to the right skew that we see in the histograms for both casual gamers and elite gamers. The small sample size of 24 for casual gamers, and 19 for elite gamers, which are both less than 30, we do not have sufficient sample sizes given our data with a heavy right skew. Therefore, we cannot use the t distribution as a model of the sampling distribution make parametric methods innappropriate to use for analysis.
 - *(Note: if you believe the data should be analyzed with non-parametric methods (requirement), then you should not include the parametric analyses you completed in part 1 in the final project)*
 
 
