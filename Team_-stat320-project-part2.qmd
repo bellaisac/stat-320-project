@@ -1,6 +1,6 @@
 ---
 title: "Working Title"
-author: "NAMES"
+author: "Kiwi, Isabella"
 format: revealjs
 embed-resources: true
 html-math-method: mathml
