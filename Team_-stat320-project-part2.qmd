@@ -8,11 +8,9 @@ execute:
   warning: false
   echo: false
   error: false
+  include: false
 ---
-
 <!-- You can add the slide options to the entire presentation or individual slides. The link at the end of this presentation has a good overview of how customize your presentation and links to pages with more details for most sections. --->
-
-
 ```{r}
 #| label: setup
 #| include: false
@@ -25,43 +23,43 @@ gamer <- read_csv("Esports_Study_Data.csv")
 nerds <- gamer |> 
   filter(Game %in% c("Casual-SB", "Elite-SB"))
 ```
-
 <!-- This is a rough outline of the types of slides you will want to create. See the Project Description page on Canvas for complete descriptions of what you need to include -->
-
 <!--- Note: you will want to replace my instructions with your actual responses on each slide --->
-
-
 ## Motivation (you can change titles)
 
-- Info on problem  
-- More Info  
+- Esports as a field requires accuracy where one thousandth of a second can determine whether a team or person wins. Skills like quick reaction times increase the chances of succeeding in faster paced video games which require these skills (Ersin at al. 2022).  
+- A recent study (Ziv et. al., 2022) found evidence that asking participants about their gaming status (gamer or non-gamer) positively affected performance for gamers and had an adverse effect on non-gamers in cognitive motor task performance. 
 - May need 2-3 slides  
 
 
 ## Outline
 
-- What are you about to cover in this talk
+- Buckle up your bootstraps, and perm your tations, we are exploring the cognitive differences between Esports athletes and casual gamers.
 
 ## Background  
 
 - In the growing Esports industry, competitive Super Smash Bros Ultimate (SSBU) players require quick reactions and timely responses to stimuli.
-- Don't be afraid to include images 
+- Professional Esports athletes practice 5-10 hours per day, nearly consistent with traditional sports and more than their casual counterpart (Emara et al. 2020).
 
-![Sample Image - this can be left blank](images/sample_image.png){#id .class width=40% height=40%}
+![GX3 February 2026, Winners Semi-finals](images/2U4A2485.jpg){#id .class width=40% height=40%}
 
 
 # Methods  
 <!-- A single hashtag # will create a title type slide to create a clear distinction between sections of the presentation. -->
 
-## Methods Slide 1 - Data Collection
+## Methods - Data Collection
 
 - The participant collection included visiting local Monterey, San Jose, and CSUMB tournaments for esports, visiting the CSUMB library to ask people to join, and other non-random methods of obtaining participants.   
 - This is a convenience sample. There is no scope of generalization.
 
+## Methods - Analytic Methods
 
-## Methods Slide 2 - Analytic Methods
+- We are planning on running a permutation test to obtain our statistics  
+- Followed by a bootstrap interval to obtain our CI
 
-- Why did you use nonparametric methods?  
+## Methods - Analytic Methods
+
+*Why did you use nonparametric methods?*  
   
 - A skew across groups.  
 - The small sample size within groups. ($n_{casual}$ = 24, $n_{elite}$ = 19)  
@@ -150,8 +148,11 @@ Provide analysis using nonparametric methods
 
 
 ## References
+-  Emara, Ahmed K., et al. “Gamer’s Health Guide: Optimizing Performance, Recognizing Hazards, and Promoting Wellness in Esports.” Current Sports Medicine Reports, vol. 19, no. 12, Dec. 2020, pp. 537–45. DOI.org (Crossref), https://doi.org/10.1249/JSR.0000000000000787.  
+- Ersin, A., Tezeren, H., Pekyavas, N., Asal, B., Atabey, A., Diri, A., & Gonen, I. (2022). The relationship between reaction time and gaming time in E-sports players. Kinesiology, 54(1), 36-42.  
+- Ziv, G., Lidor, R. & Levin, O. Reaction time and working memory in gamers and non-gamers. Sci Rep 12, 6798 (2022). https://doi.org/10.1038/s41598-022-10986-3  
 
-Be sure to also include citations within slides where necessary (especially in Motivation and Background, but may also be necessary in other places)
+
 
 
 Learn more about formatting here [Revealjs presentations](https://quarto.org/docs/presentations/revealjs/)
