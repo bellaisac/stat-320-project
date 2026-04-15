@@ -17,7 +17,13 @@ execute:
 #| label: setup
 #| include: false
 
-#library(_____)
+library(tidyverse)
+library(mosaic)
+library(ggformula)
+
+gamer <- read_csv("Esports_Study_Data.csv")
+nerds <- gamer |> 
+  filter(Game %in% c("Casual-SB", "Elite-SB"))
 ```
 
 <!-- This is a rough outline of the types of slides you will want to create. See the Project Description page on Canvas for complete descriptions of what you need to include -->
@@ -66,17 +72,22 @@ execute:
 # Results
 
 ## Summary Statistics and Graphics
-Provide descriptions and inset values from R output.
+
+- variance: Casual-SB = 2976.918 ;Elite-SB = 7099.584 
 ```{r}
 #data<-read_csv()
 #include data in project file
 #may need a few more slides for graphics
 # add |> knitr::kable() to the end of code that outputs tables to make them clean and pretty
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
-
-var(Actual_Mean_Go_RT_ms~Game, data = nerds)
 gf_boxplot(Actual_Mean_Go_RT_ms~Game, data = nerds)
 
+```
+
+## Permutatation null distribution
+
+
+```{r}
 diff <- diff(mean(Actual_Mean_Go_RT_ms~Game, data = nerds))
 
 N <- 10^4 - 1 #Shuffle 999 times
@@ -92,8 +103,33 @@ gf_histogram(~perm_diff,
              xlab = "Difference between two means",
              ylab = "Number of permutations",
              title = "Null Distribution") #describe
-```
 
+p <- ((sum(~(perm_diff >= diff)) + 1)/(N + 1))
+```
+- P-value = `r p`
+
+## Bootstrapping Confidence Interval
+
+```{r}
+noob <- nerds |> filter(Game %in% "Casual-SB")
+pros <- nerds |> filter(Game %in% "Elite-SB")
+
+diff_mean <- numeric(1000)
+
+for (i in 1:1000) {
+  
+  noob_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(noob, replace = TRUE))
+  pros_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(pros, replace = TRUE))
+  diff_mean[i] <- noob_mean - pros_mean
+}
+
+
+gf_histogram(~diff_mean, 
+             xlab = "Bootstrap Sample difference in means between casual gamers and elite gamers", 
+             title = "Bootstrap Distribution of difference in sample means")
+
+quantile(diff_mean, c(0.025,0.975)) |> knitr::kable()
+```
 
 
 ## Analysis
