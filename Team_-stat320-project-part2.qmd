@@ -64,7 +64,7 @@ nerds <- gamer |>
 - Why did you use nonparametric methods?  
   
 - A skew across groups.  
-- The small sample size within groups. ($n_casual$ = 24, $n_elite$ = 19)  
+- The small sample size within groups. ($n_{casual}$ = 24, $n_{elite}$ = 19)  
 - T-Distribution would not be trustworthy with these conditions.  
 
 
