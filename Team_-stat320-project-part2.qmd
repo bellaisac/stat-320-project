@@ -1,5 +1,5 @@
 ---
-title: "Working Title"
+title: "Impulsive Reaction Time between Casual and Top 150 Esports Players"
 author: "Kiwi, Isabella"
 format: revealjs
 embed-resources: true
@@ -45,13 +45,12 @@ execute:
 
 
 # Methods  
-
 <!-- A single hashtag # will create a title type slide to create a clear distinction between sections of the presentation. -->
 
 ## Methods Slide 1 - Data Collection
 
-- Remember to start bullets one line below the title and add TWO SPACES after the end of the text  
-- Otherwise the bullets won't format correctly  
+- The participant collection included visiting local Monterey, San Jose, and CSUMB tournaments for esports, visiting the CSUMB library to ask people to join, and other non-random methods of obtaining participants.   
+- This is a convenience sample. There is no scope of generalization.
 
 
 ## Methods Slide 2 - Analytic Methods
@@ -71,6 +70,25 @@ Provide descriptions and inset values from R output.
 #may need a few more slides for graphics
 # add |> knitr::kable() to the end of code that outputs tables to make them clean and pretty
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
+
+var(Actual_Mean_Go_RT_ms~Game, data = nerds)
+gf_boxplot(Actual_Mean_Go_RT_ms~Game, data = nerds)
+
+diff <- diff(mean(Actual_Mean_Go_RT_ms~Game, data = nerds))
+
+N <- 10^4 - 1 #Shuffle 999 times
+
+perm_diff <- numeric(N) #set up placeholder
+
+for (i in 1:N) {
+  
+   perm_diff[i] <- diff(mean(Actual_Mean_Go_RT_ms~shuffle(Game), data = nerds))  #describe
+}
+
+gf_histogram(~perm_diff,
+             xlab = "Difference between two means",
+             ylab = "Number of permutations",
+             title = "Null Distribution") #describe
 ```
 
 
