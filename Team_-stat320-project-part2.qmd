@@ -65,8 +65,6 @@ nerds <- gamer |>
 - The small sample size within groups. ($n_{casual}$ = 24, $n_{elite}$ = 19)  
 - T-Distribution would not be trustworthy with these conditions.  
 
-
-
 # Results
 
 ## Summary Statistics and Graphics
