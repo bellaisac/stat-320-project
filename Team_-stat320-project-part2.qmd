@@ -1,0 +1,100 @@
+---
+title: "Working Title"
+author: "NAMES"
+format: revealjs
+embed-resources: true
+html-math-method: mathml
+execute: 
+  warning: false
+  echo: false
+  error: false
+---
+
+<!-- You can add the slide options to the entire presentation or individual slides. The link at the end of this presentation has a good overview of how customize your presentation and links to pages with more details for most sections. --->
+
+
+```{r}
+#| label: setup
+#| include: false
+
+#library(_____)
+```
+
+<!-- This is a rough outline of the types of slides you will want to create. See the Project Description page on Canvas for complete descriptions of what you need to include -->
+
+<!--- Note: you will want to replace my instructions with your actual responses on each slide --->
+
+
+## Motivation (you can change titles)
+
+- Info on problem  
+- More Info  
+- May need 2-3 slides  
+
+
+## Outline
+
+- What are you about to cover in this talk
+
+## Background  
+
+- Relevant information to help us understand what has been done already
+- Don't be afraid to include images 
+
+![Sample Image - this can be left blank](images/sample_image.png){#id .class width=40% height=40%}
+
+
+# Methods  
+
+<!-- A single hashtag # will create a title type slide to create a clear distinction between sections of the presentation. -->
+
+## Methods Slide 1 - Data Collection
+
+- Remember to start bullets one line below the title and add TWO SPACES after the end of the text  
+- Otherwise the bullets won't format correctly  
+
+
+## Methods Slide 2 - Analytic Methods
+
+- Why did you use nonparametric methods? 
+- *(Note: if you believe the data should be analyzed with non-parametric methods (requirement), then you should not include the parametric analyses you completed in part 1 in the final project)*
+
+
+
+# Results
+
+## Summary Statistics and Graphics
+Provide descriptions and inset values from R output.
+```{r}
+#data<-read_csv()
+#include data in project file
+#may need a few more slides for graphics
+# add |> knitr::kable() to the end of code that outputs tables to make them clean and pretty
+# examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
+```
+
+
+
+## Analysis
+Provide analysis using nonparametric methods
+```{r}
+#analysis code
+```
+
+
+# Summary  
+
+
+## Conclusions  
+
+
+
+## Future Work
+
+
+## References
+
+Be sure to also include citations within slides where necessary (especially in Motivation and Background, but may also be necessary in other places)
+
+
+Learn more about formatting here [Revealjs presentations](https://quarto.org/docs/presentations/revealjs/)
