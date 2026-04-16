@@ -59,9 +59,9 @@ nerds <- gamer |>
 
 *Why did you use nonparametric methods?*  
   
-- A skew across groups.  
+- A skew across groups.   
 - The small sample size within groups. ($n_{casual}$ = 24, $n_{elite}$ = 19)  
-- T-Distribution would not be trustworthy with these conditions.  
+- T-Distribution would not be appropriate as a model of the null distribution with these conditions.  
 
 # Results
 
@@ -69,10 +69,6 @@ nerds <- gamer |>
 
 - Boxplots of mean GO reaction time (ms) for smash bros ultimate players in the Monterey and San Jose Counties for casual super gamers and for top 150(elite) gamers
 ```{r}
-#data<-read_csv()
-#include data in project file
-#may need a few more slides for graphics
-# add |> knitr::kable() to the end of code that outputs tables to make them clean and pretty
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
 ggplot(nerds) +
   geom_boxplot(aes(x = Actual_Mean_Go_RT_ms,
@@ -81,8 +77,6 @@ ggplot(nerds) +
        x = "Mean GO Reaction Time (ms)",
        title = "Smash bros ultimate players in the MRY and SJ Counties") +
   theme()
-
-
 ```
 
 # Non-parametric Analysis
@@ -97,34 +91,36 @@ N <- 10^4 - 1 #Shuffle 999 times
 
 perm_diff <- numeric(N) #set up placeholder
 
-# for (i in 1:N) {
-#   
-#    perm_diff[i] <- diff(mean(Actual_Mean_Go_RT_ms~shuffle(Game), data = nerds))  #describe
-# }
-
-gf_histogram(~perm_diff,
-             xlab = "Difference between two means",
-             ylab = "Number of permutations",
-             title = "Null Distribution") #describe
+ for (i in 1:N) {
+  
+    perm_diff[i] <- diff(mean(Actual_Mean_Go_RT_ms~shuffle(Game), data = nerds))  #describe
+ } #describe
 
 p <- ((sum(~(perm_diff >= diff)) + 1)/(N + 1))
 ```
+```{r null-dist}
+gf_histogram(~perm_diff,
+             xlab = "Difference between two means",
+             ylab = "Number of permutations",
+             title = "Null Distribution")
+```
+
 - P-value = `r p`
 
 ## Bootstrapping Confidence Interval
 
-```{r}
+```{r bs-ci}
 noob <- nerds |> filter(Game %in% "Casual-SB")
 pros <- nerds |> filter(Game %in% "Elite-SB")
 
 diff_mean <- numeric(1000)
 
-# for (i in 1:1000) {
-#   
-#   noob_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(noob, replace = TRUE))
-#   pros_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(pros, replace = TRUE))
-#   diff_mean[i] <- noob_mean - pros_mean
-# }
+ for (i in 1:1000) {
+   
+   noob_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(noob, replace = TRUE))
+   pros_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(pros, replace = TRUE))
+  diff_mean[i] <- noob_mean - pros_mean
+ }
 
 
 gf_histogram(~diff_mean, 
@@ -142,7 +138,10 @@ quantile(diff_mean, c(0.025,0.975)) |> knitr::kable()
 
 ## Conclusions  
 
-
+- There no significant difference in population means of mean GO reaction time (ms) for super smash bros ultimate players that have competed in the Monterey and San Jose Counties for casual super smash bro gamers and for top 150(elite) super smash bro gamers?   
+- Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r diff`)    
+- 100% of casual is contained within 100% of elite   
+- Convenient sample contains bias, cannot generalize to all super smash bros ultimate players.
 
 ## Future Work
 
