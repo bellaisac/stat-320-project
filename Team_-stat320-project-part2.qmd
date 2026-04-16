@@ -145,7 +145,12 @@ quantile(diff_mean, c(0.025,0.975)) |> knitr::kable()
 
 
 ## Future Work
-
+Future research should:  
+Include a randomized sample to generalize to the larger populous  
+Delve into the other variables not included such as:  
+  - Other game types  
+  - Other measures of reaction time  
+  - Controller specific reaction speed  
 
 ## References
 -  Emara, Ahmed K., et al. “Gamer’s Health Guide: Optimizing Performance, Recognizing Hazards, and Promoting Wellness in Esports.” Current Sports Medicine Reports, vol. 19, no. 12, Dec. 2020, pp. 537–45. DOI.org (Crossref), https://doi.org/10.1249/JSR.0000000000000787.  
