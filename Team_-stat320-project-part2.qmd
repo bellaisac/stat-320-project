@@ -10,10 +10,10 @@ execute:
   error: false
   include: false
 ---
-<!-- You can add the slide options to the entire presentation or individual slides. The link at the end of this presentation has a good overview of how customize your presentation and links to pages with more details for most sections. --->
 ```{r}
 #| label: setup
 #| include: false
+#| echo: false
 
 library(tidyverse)
 library(mosaic)
@@ -23,8 +23,6 @@ gamer <- read_csv("Esports_Study_Data.csv")
 nerds <- gamer |> 
   filter(Game %in% c("Casual-SB", "Elite-SB"))
 ```
-<!-- This is a rough outline of the types of slides you will want to create. See the Project Description page on Canvas for complete descriptions of what you need to include -->
-<!--- Note: you will want to replace my instructions with your actual responses on each slide --->
 ## Motivation (you can change titles)
 
 - Esports as a field requires accuracy where one thousandth of a second can determine whether a team or person wins. Skills like quick reaction times increase the chances of succeeding in faster paced video games which require these skills (Ersin at al. 2022).  
@@ -69,16 +67,25 @@ nerds <- gamer |>
 
 ## Summary Statistics and Graphics
 
-- variance: Casual-SB = 2976.918 ;Elite-SB = 7099.584 
+- Boxplots of mean GO reaction time (ms) for smash bros ultimate players in the Monterey and San Jose Counties for casual super gamers and for top 150(elite) gamers
 ```{r}
 #data<-read_csv()
 #include data in project file
 #may need a few more slides for graphics
 # add |> knitr::kable() to the end of code that outputs tables to make them clean and pretty
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
-gf_boxplot(Actual_Mean_Go_RT_ms~Game, data = nerds)
+ggplot(nerds) +
+  geom_boxplot(aes(x = Actual_Mean_Go_RT_ms,
+                   y = Game)) + coord_flip() +
+  labs(y = "Gamer type",
+       x = "Mean GO Reaction Time (ms)",
+       title = "Smash bros ultimate players in the MRY and SJ Counties") +
+  theme()
+
 
 ```
+
+# Non-parametric Analysis
 
 ## Permutatation null distribution
 
@@ -90,10 +97,10 @@ N <- 10^4 - 1 #Shuffle 999 times
 
 perm_diff <- numeric(N) #set up placeholder
 
-for (i in 1:N) {
-  
-   perm_diff[i] <- diff(mean(Actual_Mean_Go_RT_ms~shuffle(Game), data = nerds))  #describe
-}
+# for (i in 1:N) {
+#   
+#    perm_diff[i] <- diff(mean(Actual_Mean_Go_RT_ms~shuffle(Game), data = nerds))  #describe
+# }
 
 gf_histogram(~perm_diff,
              xlab = "Difference between two means",
@@ -112,12 +119,12 @@ pros <- nerds |> filter(Game %in% "Elite-SB")
 
 diff_mean <- numeric(1000)
 
-for (i in 1:1000) {
-  
-  noob_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(noob, replace = TRUE))
-  pros_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(pros, replace = TRUE))
-  diff_mean[i] <- noob_mean - pros_mean
-}
+# for (i in 1:1000) {
+#   
+#   noob_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(noob, replace = TRUE))
+#   pros_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(pros, replace = TRUE))
+#   diff_mean[i] <- noob_mean - pros_mean
+# }
 
 
 gf_histogram(~diff_mean, 
@@ -128,11 +135,6 @@ quantile(diff_mean, c(0.025,0.975)) |> knitr::kable()
 ```
 
 
-## Analysis
-Provide analysis using nonparametric methods
-```{r}
-#analysis code
-```
 
 
 # Summary  
