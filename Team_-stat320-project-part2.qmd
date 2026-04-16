@@ -137,7 +137,7 @@ ub <- quantile(diff_mean, 0.975)
 
 ## Conclusions  
 
-- There no significant difference in population means of mean GO reaction time (ms) for super smash bros ultimate players that have competed in the Monterey and San Jose Counties for casual super smash bro gamers and for top 150(elite) super smash bro gamers?   
+- There no significant difference in population means of mean GO reaction time (ms) for super smash bros ultimate players that have competed in the Monterey and San Jose Counties for casual super smash bro gamers and for top 150(elite) super smash bro gamers 
 - Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r diff`)    
 - 100% of casual is contained within 100% of elite   
 - Convenient sample contains bias, cannot generalize to all super smash bros ultimate players.
