@@ -1,14 +1,21 @@
 ---
 title: "Impulsive Reaction Time between Casual and Top 150 Esports Players"
 author: "Kiwi, Isabella"
-format: revealjs
+format: 
+  revealjs:
+    theme: blood
 embed-resources: true
 html-math-method: mathml
 execute: 
   warning: false
   echo: false
-  error: false
+  error: true
 ---
+<style>
+#title-slide h1 {
+  font-size: 2em;
+}
+</style>
 ```{r}
 #| label: setup
 #| include: false
