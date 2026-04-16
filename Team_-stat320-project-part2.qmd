@@ -8,7 +8,6 @@ execute:
   warning: false
   echo: false
   error: false
-  include: false
 ---
 ```{r}
 #| label: setup
@@ -23,12 +22,10 @@ gamer <- read_csv("Esports_Study_Data.csv")
 nerds <- gamer |> 
   filter(Game %in% c("Casual-SB", "Elite-SB"))
 ```
-## Motivation (you can change titles)
+## Motivation
 
 - Esports as a field requires accuracy where one thousandth of a second can determine whether a team or person wins. Skills like quick reaction times increase the chances of succeeding in faster paced video games which require these skills (Ersin at al. 2022).  
 - A recent study (Ziv et. al., 2022) found evidence that asking participants about their gaming status (gamer or non-gamer) positively affected performance for gamers and had an adverse effect on non-gamers in cognitive motor task performance. 
-- May need 2-3 slides  
-
 
 ## Outline
 
@@ -83,7 +80,6 @@ ggplot(nerds) +
 
 ## Permutatation null distribution
 
-
 ```{r}
 diff <- diff(mean(Actual_Mean_Go_RT_ms~Game, data = nerds))
 
@@ -127,10 +123,13 @@ gf_histogram(~diff_mean,
              xlab = "Bootstrap Sample difference in means between casual gamers and elite gamers", 
              title = "Bootstrap Distribution of difference in sample means")
 
-quantile(diff_mean, c(0.025,0.975)) |> knitr::kable()
+lb <- quantile(diff_mean, 0.025)
+ub <- quantile(diff_mean, 0.975)
 ```
 
-
+- Confidence Interval : (`r lb`, `r ub`)  
+- Include negative, zero and positive numbers.  
+- Casual can have mean go reaction time faster, slower, or equal to that of elite. 
 
 
 # Summary  
