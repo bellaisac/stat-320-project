@@ -11,11 +11,13 @@ execute:
   echo: false
   error: true
 ---
+
 <style>
 #title-slide h1 {
   font-size: 2em;
 }
 </style>
+
 ```{r}
 #| label: setup
 #| include: false
@@ -33,6 +35,7 @@ nerds <- gamer |>
 
 - Esports as a field requires accuracy where one thousandth of a second can determine whether a team or person wins. Skills like quick reaction times increase the chances of succeeding in faster paced video games which require these skills (Ersin at al. 2022).  
 - A recent study (Ziv et. al., 2022) found evidence that asking participants about their gaming status (gamer or non-gamer) positively affected performance for gamers and had an adverse effect on non-gamers in cognitive motor task performance. 
+
 
 ## Outline
 
@@ -72,11 +75,12 @@ nerds <- gamer |>
 ## Summary Statistics and Graphics
 
 - Boxplots of mean GO reaction time (ms) for smash bros ultimate players in the Monterey and San Jose Counties for casual super gamers and for top 150(elite) gamers
+
 ```{r}
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
 ggplot(nerds) +
   geom_boxplot(aes(x = Actual_Mean_Go_RT_ms,
-                   y = Game)) + coord_flip() +
+                   y = Game)) +
   labs(y = "Gamer type",
        x = "Mean GO Reaction Time (ms)",
        title = "Smash bros ultimate players in the MRY and SJ Counties") +
@@ -88,7 +92,7 @@ ggplot(nerds) +
 ## Permutatation null distribution
 
 ```{r}
-diff <- diff(mean(Actual_Mean_Go_RT_ms~Game, data = nerds))
+differ <- diff(mean(Actual_Mean_Go_RT_ms~Game, data = nerds))
 
 N <- 10^4 - 1 #Shuffle 999 times
 
@@ -99,8 +103,9 @@ perm_diff <- numeric(N) #set up placeholder
     perm_diff[i] <- diff(mean(Actual_Mean_Go_RT_ms~shuffle(Game), data = nerds))  #describe
  } #describe
 
-p <- ((sum(~(perm_diff >= diff)) + 1)/(N + 1))
+p <- ((sum(~(perm_diff >= differ)) + 1)/(N + 1))
 ```
+
 ```{r null-dist}
 gf_histogram(~perm_diff,
              xlab = "Difference between two means",
@@ -145,24 +150,21 @@ ub <- quantile(diff_mean, 0.975)
 ## Conclusions  
 
 - There no significant difference in population means of mean GO reaction time (ms) for super smash bros ultimate players that have competed in the Monterey and San Jose Counties for casual super smash bro gamers and for top 150(elite) super smash bro gamers 
-- Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r diff`)    
+- Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r differ`)    
 - 100% of casual is contained within 100% of elite   
 - Convenient sample contains bias, cannot generalize to all super smash bros ultimate players.
 
 ## Future Work
-Future research should:  
-Include a randomized sample to generalize to the larger populous  
+
+Include a randomized sample to generalize to the larger populations  
+
 Delve into the other variables not included such as:  
   - Other game types  
   - Other measures of reaction time  
   - Controller specific reaction speed  
 
-## References
+## References {.smaller}
 -  Emara, Ahmed K., et al. “Gamer’s Health Guide: Optimizing Performance, Recognizing Hazards, and Promoting Wellness in Esports.” Current Sports Medicine Reports, vol. 19, no. 12, Dec. 2020, pp. 537–45. DOI.org (Crossref), https://doi.org/10.1249/JSR.0000000000000787.  
 - Ersin, A., Tezeren, H., Pekyavas, N., Asal, B., Atabey, A., Diri, A., & Gonen, I. (2022). The relationship between reaction time and gaming time in E-sports players. Kinesiology, 54(1), 36-42.  
 - Ziv, G., Lidor, R. & Levin, O. Reaction time and working memory in gamers and non-gamers. Sci Rep 12, 6798 (2022). https://doi.org/10.1038/s41598-022-10986-3  
 
-
-
-
-Learn more about formatting here [Revealjs presentations](https://quarto.org/docs/presentations/revealjs/)
