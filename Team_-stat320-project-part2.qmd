@@ -1,6 +1,7 @@
 ---
 title: "Impulsive Reaction Time between Casual and Top 150 Esports Players"
-author: "Kiwi, Isabella"
+subtitle: "Kiwi, Isabella"
+author: "affiliation"
 format: 
   revealjs:
     theme: blood
@@ -39,7 +40,7 @@ nerds <- gamer |>
 
 ## Outline
 
-- Buckle up your bootstraps, and perm your tations, we are exploring the cognitive differences between Esports athletes and casual gamers.
+- 
 
 ## Background  
 
@@ -54,8 +55,16 @@ nerds <- gamer |>
 
 ## Methods - Data Collection
 
-- The participant collection included visiting local Monterey, San Jose, and CSUMB tournaments for esports, visiting the CSUMB library to ask people to join, and other non-random methods of obtaining participants.   
-- This is a convenience sample. There is no scope of generalization.
+- The participant collection included visiting local Monterey, San Jose, and CSUMB tournaments for esports, visiting the CSUMB library to ask people to join, and other non-random methods of obtaining participants.  
+- Conducted computerized practice assessment to get them accustomed to the software and then the actual congitive test to collect data on impulsivity via the GO/NoGO test
+- Casual SSBU players who play at least 4 hours per week of the game. Our last group was the Elite SSBU players who are ranked top 150 in the world.
+
+
+## Methods - Variable Creation
+
+- Mean GO reaction time: Difference between the actual mean GO reaction time (ms) and the practice mean GO reaction time (ms).  
+![GO Prompt](images/go.png){#id .class width=40% height=40%}
+![NoGO Prompt](images/nogo.png){#id .class width=40% height=40%}
 
 ## Methods - Analytic Methods
 
@@ -74,7 +83,7 @@ nerds <- gamer |>
 
 ## Summary Statistics and Graphics
 
-- Boxplots of mean GO reaction time (ms) for smash bros ultimate players in the Monterey and San Jose Counties for casual super gamers and for top 150(elite) gamers
+- Boxplots of mean GO reaction time (ms) for smash bros ultimate players in the Monterey and San Jose Counties for casual SSBU players and for Elite SSBU players
 
 ```{r}
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
@@ -141,7 +150,7 @@ ub <- quantile(diff_mean, 0.975)
 
 - Confidence Interval : (`r lb`, `r ub`)  
 - Include negative, zero and positive numbers.  
-- Casual can have mean go reaction time faster, slower, or equal to that of elite. 
+- Casual can have mean GO reaction time faster, slower, or equal to that of Elite. 
 
 
 # Summary  
@@ -149,9 +158,9 @@ ub <- quantile(diff_mean, 0.975)
 
 ## Conclusions  
 
-- There no significant difference in population means of mean GO reaction time (ms) for super smash bros ultimate players that have competed in the Monterey and San Jose Counties for casual super smash bro gamers and for top 150(elite) super smash bro gamers 
+- There no significant difference in population means of mean GO reaction time (ms) for SSBU players that have competed in the Monterey and San Jose Counties for Casual SSBU and for Elite SSBU gamers 
 - Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r differ`)    
-- 100% of casual is contained within 100% of elite   
+- 100% of Casual is contained within 100% of Elite   
 - Convenient sample contains bias, cannot generalize to all super smash bros ultimate players.
 
 ## Future Work
