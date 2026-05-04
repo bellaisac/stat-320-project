@@ -12,12 +12,12 @@ execute:
   echo: false
   error: true
 ---
-
 <style>
 #title-slide h1 {
   font-size: 2em;
 }
 </style>
+## Motivation
 
 ```{r}
 #| label: setup
@@ -32,7 +32,7 @@ gamer <- read_csv("Esports_Study_Data.csv")
 nerds <- gamer |> 
   filter(Game %in% c("Casual-SB", "Elite-SB"))
 ```
-## Motivation
+
 
 - Esports as a field requires accuracy where one thousandth of a second can determine whether a team or person wins. Skills like quick reaction times increase the chances of succeeding in faster paced video games which require these skills (Ersin at al. 2022).  
 - A recent study (Ziv et. al., 2022) found evidence that asking participants about their gaming status (gamer or non-gamer) positively affected performance for gamers and had an adverse effect on non-gamers in cognitive motor task performance. 
@@ -53,15 +53,16 @@ nerds <- gamer |>
 # Methods  
 <!-- A single hashtag # will create a title type slide to create a clear distinction between sections of the presentation. -->
 
-## Methods - Data Collection
+## Methods - Data Collection 
 
-- The participant collection included visiting local Monterey, San Jose, and CSUMB tournaments for esports, visiting the CSUMB library to ask people to join, and other non-random methods of obtaining participants.  
-- Conducted computerized practice assessment to get them accustomed to the software and then the actual congitive test to collect data on impulsivity via the GO/NoGO test
-- Casual SSBU players who play at least 4 hours per week of the game. Our last group was the Elite SSBU players who are ranked top 150 in the world.
+- Participant collection included visiting local Monterey, San Jose, and CSUMB SSBU tournaments to ask people to join, and other non-random methods of obtaining participants.  
+- Conducted computerized practice assessment to get them accustomed to the software and then the actual congitive test to collect data on impulsivity via the GO/NoGO test  
+- Casual SSBU players (play at least 4 hours per week of the game), Elite SSBU players (ranked top 150 in the world)  
 
 
 ## Methods - Variable Creation
 
+- Measure of reaction time to an
 - Mean GO reaction time: Difference between the actual mean GO reaction time (ms) and the practice mean GO reaction time (ms).  
 ![GO Prompt](images/go.png){#id .class width=40% height=40%}
 ![NoGO Prompt](images/nogo.png){#id .class width=40% height=40%}
@@ -158,14 +159,14 @@ ub <- quantile(diff_mean, 0.975)
 
 ## Conclusions  
 
-- There no significant difference in population means of mean GO reaction time (ms) for SSBU players that have competed in the Monterey and San Jose Counties for Casual SSBU and for Elite SSBU gamers 
-- Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r differ`)    
-- 100% of Casual is contained within 100% of Elite   
+- There no significant difference in population means of mean GO reaction time (ms) for SSBU players that have competed in the Monterey and San Jose Counties for Casual SSBU and for Elite SSBU players. 
+- Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r differ`).    
+- 100% of Casual mean GO reaction time is contained within 100% of Elite mean GO reaction time.   
 - Convenient sample contains bias, cannot generalize to all super smash bros ultimate players.
 
 ## Future Work
 
-Include a randomized sample to generalize to the larger populations  
+Include a random sample to generalize to the larger populations  
 
 Delve into the other variables not included such as:  
   - Other game types  
