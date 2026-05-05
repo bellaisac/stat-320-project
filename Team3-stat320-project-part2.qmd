@@ -20,6 +20,8 @@ execute:
 library(tidyverse)
 library(mosaic)
 library(ggformula)
+library(knitr)
+library(kableExtra)
 
 gamer <- read_csv("Esports_Study_Data.csv")
 nerds <- gamer |> 
@@ -77,24 +79,44 @@ nerds <- gamer |>
 
 ## Methods - Analytic Methods
 
-*Why did you use nonparametric methods?* 
-
-::: {.smaller}
-- There is a skew and outliers within the small sample sized groups ($n_{casual}$ = 24, $n_{elite}$ = 19) making a median the most accurate measure of center
-- T-Distribution and randomized equivalents would not be appropriate as a model of the null distribution with these conditions. 
-- We are planning on running a Wilcoxon Rank Sum Test (WRST) to obtain our test statistics and CI.  
-:::
-
 ```{r histograms, out.width="60%", fig.align = 'center'}
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
 ggplot(nerds) +
-  geom_histogram(aes(x = Actual_Mean_Go_RT_ms)) +
+  geom_histogram(aes(x = Actual_Mean_Go_RT_ms,
+                     fill = Game),
+                 color = 1,
+                 binwidth = 25,
+                 boundary = 300) +
   facet_wrap(~Game)+
   labs(y = "Frequency",
        x = "Mean GO Reaction Time (ms)",
        title = "Smash bros ultimate players in the MRY and SJ Counties") +
-  theme()
+  scale_fill_brewer(palette = "Accent") +
+  theme_bw() +
+  theme(plot.caption = element_text(hjust = 0,
+                                    size = 14, 
+                                    margin = margin(t = 20)),
+        plot.caption.position = "plot",
+        axis.title = element_text(size = 18),
+        axis.text = element_text(size = 16),
+        legend.position = "none")
 ```
+
+```{r}
+nerds |>
+  group_by(Game) |> 
+  summarize(median = median(Actual_Mean_Go_RT_ms),
+            IQR = IQR(Actual_Mean_Go_RT_ms),
+            n = n()) |> 
+  knitr::kable() |> kable_styling(font_size = 25)
+```
+
+## Methods - Decision
+*Why did you use nonparametric methods?*   
+- Right skew and outliers within the small sample sized groups ($n_{casual}$ = 24, $n_{elite}$ = 19), median/ shift is the more appropriate measure of center.  
+- T-Distribution and randomized equivalents would not be appropriate to measure difference in true medians/ true shift.   
+- We are planning on running a Wilcoxon Rank Sum Test (WRST) since we have numeric, independent data, roughly equal variance and two population distributions of the same shape.
+
 
 # Results
 
@@ -123,12 +145,6 @@ ggplot(nerds) +
 
 ```
 
-## Summary Statistics
-```{r}
-df_stats(Actual_Mean_Go_RT_ms~Game, data = nerds) |> 
-  select(Game, mean, median, sd, n) |> 
-  knitr::kable()
-```
 
 # Non-parametric Analysis
 
