@@ -78,7 +78,7 @@ nerds <- gamer |>
 ## Methods - Analytic Methods
 
 *Why did you use nonparametric methods?*  
-```{r}
+```{r histograms}
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
 ggplot(nerds) +
   geom_histogram(aes(x = Actual_Mean_Go_RT_ms)) +
