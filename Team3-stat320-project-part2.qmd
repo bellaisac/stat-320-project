@@ -129,72 +129,38 @@ df_stats(Actual_Mean_Go_RT_ms~Game, data = nerds) |>
 
 # Non-parametric Analysis
 
-## Permutatation null distribution
+## Wilcoxon Rank Sum test
 
 ```{r}
-differ <- diff(mean(Actual_Mean_Go_RT_ms~Game, data = nerds))
-
-N <- 10^4 - 1 #Shuffle 999 times
-
-perm_diff <- numeric(N) #set up placeholder
-
- for (i in 1:N) {
-
-    perm_diff[i] <- diff(mean(Actual_Mean_Go_RT_ms~shuffle(Game), data = nerds))  #describe
- } #describe
-
-p <- ((sum(~(perm_diff >= differ)) + 1)/(N + 1))
+casual <- nerds |> filter(Game == "Casual SSBU") |> pull(Actual_Mean_Go_RT_ms)
+elite <- nerds |> filter(Game == "Elite SSBU") |> pull(Actual_Mean_Go_RT_ms)
+wilcox.test(casual, elite, alternative = "greater", exact = TRUE)
 ```
 
-```{r null-dist}
-gf_histogram(~perm_diff,
-             xlab = "Difference between two means",
-             ylab = "Number of permutations",
-             title = "Null Distribution")
+- 0.8748 probability of observing W = 181.5 or greater, assuming the true shift of Mean GO Reaction Time (ms) in the casual and elite Smash bros ultimate players in the MRY and SJ Counties is zero.
 
+## Confidence Interval
 
-```
-- P-value = `r p`
-
-
-## Bootstrapping Confidence Interval
-
-```{r bs-ci}
-noob <- nerds |> filter(Game %in% "Casual SSBU")
-pros <- nerds |> filter(Game %in% "Elite SSBU")
-
-diff_mean <- numeric(1000)
-
-for (i in 1:1000) {
-
-noob_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(noob, replace = TRUE))
-pros_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(pros, replace = TRUE))
-   diff_mean[i] <- noob_mean - pros_mean
-  }
-
-
- gf_histogram(~diff_mean,
-              xlab = "Bootstrap Sample difference in means between casual gamers and elite gamers",
-              title = "Bootstrap Distribution of difference in sample means")
-
- lb <- quantile(diff_mean, 0.025)
- ub <- quantile(diff_mean, 0.975)
+```{r ci}
+#| include: false
+wilcox.test(casual, elite, conf.level = 0.95, conf.int = TRUE)
 ```
 
-- Confidence Interval : (`r lb`, `r ub`)
+- Confidence Interval : (-48.10003, 13.95001)
 - Include negative, zero and positive numbers.  
-- Casual can have mean GO reaction time faster, slower, or equal to that of Elite. 
+- True shift could be less than zero, zero, or greater than zero. 
+- Cannot make a clear conclusion on the true shift of Mean GO Reaction Time (ms) in the casual and elite Smash bros ultimate players in the MRY and SJ Counties
 
 
 # Summary  
 
-
 ## Conclusions  
 
 - There no significant difference in population means of mean GO reaction time (ms) for SSBU players that have competed in the Monterey and San Jose Counties for Casual SSBU and for Elite SSBU players. 
-- Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r differ`).
-- 100% of Casual mean GO reaction time is contained within 100% of Elite mean GO reaction time.   
+- No evidence against the null hypothesis (p-value = 0.8748,  W = 181.5, $\alpha = 0.05$,).
+- A lot of overlapping in the boxplots, 100% of Casual mean GO reaction time is contained within 100% of Elite mean GO reaction time. No evidence against the null hypothesis.  
 - Convenient sample contains bias, cannot generalize to all super smash bros ultimate players.
+
 
 ## Future Work
 
