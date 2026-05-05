@@ -43,6 +43,11 @@ nerds <- gamer |>
   font-size: 0.8em;
 }
 </style>
+<style>
+.smallest {
+  font-size: 0.6em;
+}
+</style>
 
 ::: {.smaller}
 - In the growing Esports industry, competitive Super Smash Bros Ultimate (SSBU) players require quick reactions and timely responses to stimuli.  
