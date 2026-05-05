@@ -1,7 +1,7 @@
 ---
 title: "Impulsive Reaction Time between Casual and Top 150 Esports Players"
 subtitle: "Kiwi, Isabella"
-author: "Kinesiology Department at CSUMB, Marine Science Department at CSUMB,"
+author: "Kinesiology Department at CSUMB, Marine Science Department at CSUMB"
 format: 
   revealjs:
     theme: blood
@@ -12,7 +12,22 @@ execute:
   echo: false
   error: true
 ---
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
 
+library(tidyverse)
+library(mosaic)
+library(ggformula)
+
+gamer <- read_csv("Esports_Study_Data.csv")
+nerds <- gamer |> 
+  filter(Game %in% c("Casual-SB", "Elite-SB"))
+# nerds$Game <- recode(nerds$Game,
+#                      "Casual-SB" = "Casual SSBU",
+#                      "Elite-SB"  = "Elite SSBU")
+```
 ## Motivation
 
 <style>
@@ -63,9 +78,19 @@ execute:
 
 *Why did you use nonparametric methods?*  
   
-- A skew across groups.   
-- The small sample size within groups. ($n_{casual}$ = 24, $n_{elite}$ = 19)  
+- There is a skew within the small sample sized groups. ($n_{casual}$ = 24, $n_{elite}$ = 19)  
 - T-Distribution would not be appropriate as a model of the null distribution with these conditions.  
+- A permuted T-test would be appropriate due to their roughly equal Variability.
+```{r}
+# examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
+ggplot(nerds) +
+  geom_histogram(aes(x = Actual_Mean_Go_RT_ms)) +
+  facet_wrap(~Game)+
+  labs(y = "Frequency",
+       x = "Mean GO Reaction Time (ms)",
+       title = "Smash bros ultimate players in the MRY and SJ Counties") +
+  theme()
+```
 
 # Results
 
@@ -73,45 +98,70 @@ execute:
 
 - Boxplots of mean GO reaction time (ms) for smash bros ultimate players in the Monterey and San Jose Counties for casual SSBU players and for Elite SSBU players
 
-
-::: {.cell}
-::: {.cell-output-display}
-![](Team_-stat320-project-part2_files/figure-revealjs/unnamed-chunk-1-1.png){width=960}
-:::
-:::
-
+```{r}
+# examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
+ggplot(nerds) +
+  geom_boxplot(aes(x = Actual_Mean_Go_RT_ms,
+                   y = Game)) +
+  labs(y = "Gamer type",
+       x = "Mean GO Reaction Time (ms)",
+       title = "Smash bros ultimate players in the MRY and SJ Counties") +
+  theme()
+```
 
 # Non-parametric Analysis
 
 ## Permutatation null distribution
 
+```{r}
+differ <- diff(mean(Actual_Mean_Go_RT_ms~Game, data = nerds))
 
-::: {.cell}
+N <- 10^4 - 1 #Shuffle 999 times
 
-:::
+perm_diff <- numeric(N) #set up placeholder
 
+ for (i in 1:N) {
+  
+    perm_diff[i] <- diff(mean(Actual_Mean_Go_RT_ms~shuffle(Game), data = nerds))  #describe
+ } #describe
 
+p <- ((sum(~(perm_diff >= differ)) + 1)/(N + 1))
+```
 
-::: {.cell}
-::: {.cell-output-display}
-![](Team_-stat320-project-part2_files/figure-revealjs/null-dist-1.png){width=960}
-:::
-:::
+```{r null-dist}
+gf_histogram(~perm_diff,
+             xlab = "Difference between two means",
+             ylab = "Number of permutations",
+             title = "Null Distribution")
+```
 
-
-- P-value = 0.1221
+- P-value = `r p`
 
 ## Bootstrapping Confidence Interval
 
+```{r bs-ci}
+noob <- nerds |> filter(Game %in% "Casual-SB")
+pros <- nerds |> filter(Game %in% "Elite-SB")
 
-::: {.cell}
-::: {.cell-output-display}
-![](Team_-stat320-project-part2_files/figure-revealjs/bs-ci-1.png){width=960}
-:::
-:::
+diff_mean <- numeric(1000)
+
+ for (i in 1:1000) {
+   
+   noob_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(noob, replace = TRUE))
+   pros_mean <- mean(~Actual_Mean_Go_RT_ms, data = resample(pros, replace = TRUE))
+  diff_mean[i] <- noob_mean - pros_mean
+ }
 
 
-- Confidence Interval : (-73.2477177, 13.1057177)  
+gf_histogram(~diff_mean, 
+             xlab = "Bootstrap Sample difference in means between casual gamers and elite gamers", 
+             title = "Bootstrap Distribution of difference in sample means")
+
+lb <- quantile(diff_mean, 0.025)
+ub <- quantile(diff_mean, 0.975)
+```
+
+- Confidence Interval : (`r lb`, `r ub`)  
 - Include negative, zero and positive numbers.  
 - Casual can have mean GO reaction time faster, slower, or equal to that of Elite. 
 
@@ -122,7 +172,7 @@ execute:
 ## Conclusions  
 
 - There no significant difference in population means of mean GO reaction time (ms) for SSBU players that have competed in the Monterey and San Jose Counties for Casual SSBU and for Elite SSBU players. 
-- Weak evidence against the null hypothesis (p-value = 0.1221, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ 26.7829693).    
+- Weak evidence against the null hypothesis (p-value = `r p`, $\alpha = 0.05$, $\bar{x}_{casual} - \bar{x}_{elite} =$ `r differ`).    
 - 100% of Casual mean GO reaction time is contained within 100% of Elite mean GO reaction time.   
 - Convenient sample contains bias, cannot generalize to all super smash bros ultimate players.
 
@@ -139,5 +189,4 @@ Delve into the other variables not included such as:
 -  Emara, Ahmed K., et al. “Gamer’s Health Guide: Optimizing Performance, Recognizing Hazards, and Promoting Wellness in Esports.” Current Sports Medicine Reports, vol. 19, no. 12, Dec. 2020, pp. 537–45. DOI.org (Crossref), https://doi.org/10.1249/JSR.0000000000000787.  
 - Ersin, A., Tezeren, H., Pekyavas, N., Asal, B., Atabey, A., Diri, A., & Gonen, I. (2022). The relationship between reaction time and gaming time in E-sports players. Kinesiology, 54(1), 36-42.  
 - Ziv, G., Lidor, R. & Levin, O. Reaction time and working memory in gamers and non-gamers. Sci Rep 12, 6798 (2022). https://doi.org/10.1038/s41598-022-10986-3  
-
 
