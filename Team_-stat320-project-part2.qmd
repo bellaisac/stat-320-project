@@ -12,13 +12,6 @@ execute:
   echo: false
   error: true
 ---
-<style>
-#title-slide h1 {
-  font-size: 2em;
-}
-</style>
-## Motivation
-
 ```{r}
 #| label: setup
 #| include: false
@@ -32,7 +25,13 @@ gamer <- read_csv("Esports_Study_Data.csv")
 nerds <- gamer |> 
   filter(Game %in% c("Casual-SB", "Elite-SB"))
 ```
+## Motivation
 
+<style>
+#title-slide h1 {
+  font-size: 2em;
+}
+</style>
 
 - Esports as a field requires accuracy where one thousandth of a second can determine whether a team or person wins. Skills like quick reaction times increase the chances of succeeding in faster paced video games which require these skills (Ersin at al. 2022).  
 - A recent study (Ziv et. al., 2022) found evidence that asking participants about their gaming status (gamer or non-gamer) positively affected performance for gamers and had an adverse effect on non-gamers in cognitive motor task performance. 
