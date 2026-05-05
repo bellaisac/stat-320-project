@@ -101,15 +101,17 @@ ggplot(nerds) +
                                     margin = margin(t = 20)),
         plot.caption.position = "plot",
         axis.title = element_text(size = 18),
-        axis.text = element_text(size = 16))
+        axis.text = element_text(size = 16),
+        legend.position = "none")
 
 ```
 
 ## Summary Statistics
 ```{r}
-df_stats(Actual_Mean_Go_RT_ms~Game, data = nerds)|> knitr::kable()
+df_stats(Actual_Mean_Go_RT_ms~Game, data = nerds) |> 
+  select(Game, mean, median, sd, n) |> 
+  knitr::kable()
 ```
-
 
 # Non-parametric Analysis
 
@@ -193,4 +195,5 @@ Delve into the other variables not included such as:
 -  Emara, Ahmed K., et al. “Gamer’s Health Guide: Optimizing Performance, Recognizing Hazards, and Promoting Wellness in Esports.” Current Sports Medicine Reports, vol. 19, no. 12, Dec. 2020, pp. 537–45. DOI.org (Crossref), https://doi.org/10.1249/JSR.0000000000000787.  
 - Ersin, A., Tezeren, H., Pekyavas, N., Asal, B., Atabey, A., Diri, A., & Gonen, I. (2022). The relationship between reaction time and gaming time in E-sports players. Kinesiology, 54(1), 36-42.  
 - Ziv, G., Lidor, R. & Levin, O. Reaction time and working memory in gamers and non-gamers. Sci Rep 12, 6798 (2022). https://doi.org/10.1038/s41598-022-10986-3  
+
 
