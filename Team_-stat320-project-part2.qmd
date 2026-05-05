@@ -1,7 +1,7 @@
 ---
 title: "Impulsive Reaction Time between Casual and Top 150 Esports Players"
 subtitle: "Kiwi, Isabella"
-author: "affiliation"
+author: "Kinesiology Department at CSUMB, Marine Science Department at CSUMB,"
 format: 
   revealjs:
     theme: blood
