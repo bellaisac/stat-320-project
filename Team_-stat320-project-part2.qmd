@@ -23,10 +23,11 @@ library(ggformula)
 
 gamer <- read_csv("Esports_Study_Data.csv")
 nerds <- gamer |> 
-  filter(Game %in% c("Casual-SB", "Elite-SB"))
-# nerds$Game <- recode(nerds$Game,
-#                      "Casual-SB" = "Casual SSBU",
-#                      "Elite-SB"  = "Elite SSBU")
+  filter(Game %in% c("Casual-SB", "Elite-SB")) |> 
+  mutate(Game = recode(Game,
+                       "Casual-SB" = "Casual SSBU",
+                       "Elite-SB"  = "Elite SSBU"),
+         Game = factor(Game, levels = c("Casual SSBU", "Elite SSBU")))
 ```
 ## Motivation
 
@@ -77,10 +78,6 @@ nerds <- gamer |>
 ## Methods - Analytic Methods
 
 *Why did you use nonparametric methods?*  
-  
-- There is a skew within the small sample sized groups. ($n_{casual}$ = 24, $n_{elite}$ = 19)  
-- T-Distribution would not be appropriate as a model of the null distribution with these conditions.  
-- A permuted T-test would be appropriate due to their roughly equal Variability.
 ```{r}
 # examples: df_stats(Results~Group, data=df_data) |> knitr::kable()
 ggplot(nerds) +
@@ -91,6 +88,10 @@ ggplot(nerds) +
        title = "Smash bros ultimate players in the MRY and SJ Counties") +
   theme()
 ```
+- There is a skew within the small sample sized groups. ($n_{casual}$ = 24, $n_{elite}$ = 19)  
+- T-Distribution would not be appropriate as a model of the null distribution with these conditions.  
+- A permuted T-test would not be appropriate because the median 
+
 
 # Results
 
@@ -140,8 +141,8 @@ gf_histogram(~perm_diff,
 ## Bootstrapping Confidence Interval
 
 ```{r bs-ci}
-noob <- nerds |> filter(Game %in% "Casual-SB")
-pros <- nerds |> filter(Game %in% "Elite-SB")
+noob <- nerds |> filter(Game %in% "Casual SSBU")
+pros <- nerds |> filter(Game %in% "Elite SSBU")
 
 diff_mean <- numeric(1000)
 
